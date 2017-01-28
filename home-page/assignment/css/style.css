@@ -1,0 +1,19 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 36px;
+}
+
+.nav-text{
+    color: white;
+}
+
+.website-list{
+    margin-top: 20px;
+}
+
+a{
+    text-decoration: none !important;
+}
