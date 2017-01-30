@@ -12,8 +12,14 @@ body {
 
 .website-list{
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 a{
     text-decoration: none !important;
+}
+
+img {
+    width: 100%;
+    height: auto;
 }
