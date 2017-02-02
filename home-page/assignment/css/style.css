@@ -13,7 +13,7 @@ body {
 .website-list{
     margin-top: 20px;
     margin-bottom: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 60px;
 }
 
 a{
@@ -23,6 +23,11 @@ a{
 img {
     width: 100%;
     height: auto;
+}
+
+.del-button{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .widget-dragger{
