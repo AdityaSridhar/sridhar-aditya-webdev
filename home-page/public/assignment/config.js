@@ -73,5 +73,6 @@
                 controller: "EditWidgetController",
                 controllerAs: "model"
             })
+            .otherwise({redirectTo:'/login'})
     }
 })();

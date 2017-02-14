@@ -7,7 +7,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname));
 
 require ("./test/app.js")(app);
 
