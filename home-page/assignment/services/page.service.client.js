@@ -17,7 +17,7 @@
 
         var api = {
             "createPage": createPage,
-            "findPageByWebsiteId": findPageByWebsiteId,
+            "findPagesByWebsiteId": findPagesByWebsiteId,
             "findPageById": findPageById,
             "updatePage": updatePage,
             "deletePage": deletePage
@@ -26,17 +26,18 @@
 
         function createPage(websiteId, page){
             page.websiteId = websiteId;
-            page._id = (new Date()).getTime();
+            page._id = ((new Date()).getTime()).toString();
             pages.push(page);
         }
 
-        function findPageByWebsiteId(websiteId){
+        function findPagesByWebsiteId(websiteId){
+            var pagesForSite = [];
             for(var i in pages){
                 if(pages[i].websiteId === websiteId){
-                    return angular.copy(pages[i]);
+                    pagesForSite.push(pages[i]);
                 }
             }
-            return null;
+            return pagesForSite;
         }
 
         function findPageById(pageId){

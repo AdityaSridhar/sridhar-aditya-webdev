@@ -29,7 +29,7 @@
 
         function createWebsite(userId, website){
             website.developerId = userId;
-            website._id = (new Date()).getTime();
+            website._id = ((new Date()).getTime()).toString();
             websites.push(website);
         }
 

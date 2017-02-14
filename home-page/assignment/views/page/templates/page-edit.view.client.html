@@ -2,17 +2,17 @@
     <div class="container-fluid">
         <div class="col-sm-4">
             <div class="navbar-text pull-left">
-                <a class="nav-text" href="page-list.view.client.html">
+                <a class="nav-text" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-header hidden-xs">
-                <a class="navbar-brand nav-text" href="#">
+                <a class="navbar-brand nav-text" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                     Pages
                 </a>
             </div>
             <div class="navbar-text pull-right hidden-xs">
-                <a class="nav-text" href="page-new.view.client.html">
+                <a class="nav-text" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
@@ -20,12 +20,12 @@
 
         <div class="col-sm-8">
             <div class="navbar-header pull-left">
-                <a class="navbar-brand nav-text" href="#">
+                <a class="navbar-brand nav-text" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}">
                     Edit Page
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a class="nav-text" href="page-list.view.client.html">
+                <a class="nav-text" ng-click="model.updatePage(model.page)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -36,42 +36,12 @@
 <div class="container-fluid">
     <div class="col-sm-4 hidden-xs">
         <ul class="list-group website-list">
-            <li class="list-group-item">
-                Blog Post
+            <li ng-repeat="page in model.pages" class="list-group-item">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                    {{page.name}}
+                </a>
                 <div class="pull-right">
-                    <a href="page-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </li>
-            <li class="list-group-item">
-                Blogs
-                <div class="pull-right">
-                    <a href="page-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </li>
-            <li class="list-group-item">
-                Home
-                <div class="pull-right">
-                    <a href="page-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </li>
-            <li class="list-group-item">
-                About
-                <div class="pull-right">
-                    <a href="page-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </li>
-            <li class="list-group-item">
-                Contact Us
-                <div class="pull-right">
-                    <a href="page-edit.view.client.html">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -80,26 +50,28 @@
     </div>
     <div class="col-sm-8 website-list">
         <label for="page-name">Name</label>
-        <input placeholder="Page Name"
+        <input ng-model="model.page.name"
+               placeholder="Page Name"
                value = "Blog Post"
                class="form-control"
                id="page-name"/>
 
         <label for="page-title">Title</label>
-        <textarea placeholder="Page Title"
+        <textarea ng-model="model.page.description"
+                  placeholder="Page Title"
                   rows="3"
                   class="form-control"
                   id="page-title"></textarea>
 
         <a class="btn btn-danger  btn-block del-button"
-           href="../website/website-list.view.client.html">Delete</a>
+           ng-click="model.deletePage()">Delete</a>
     </div>
 </div>
 
 <nav class="navbar navbar-light navbar-fixed-bottom bg-primary">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a class="nav-text" href="../user/profile.view.client.html">
+            <a class="nav-text" href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

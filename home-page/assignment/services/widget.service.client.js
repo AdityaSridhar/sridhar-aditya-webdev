@@ -32,7 +32,7 @@
 
         function createWidget(pageId, widget){
             widget.pageId = pageId;
-            widget._id = (new Date()).getTime();
+            widget._id = ((new Date()).getTime()).toString();
             widgets.push(page);
         }
 

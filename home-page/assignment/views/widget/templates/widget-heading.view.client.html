@@ -24,13 +24,19 @@
         <input id="widget-name" class="form-control" type="text" placeholder="Name"/>
 
         <label for="widget-text">Text</label>
-        <input id="widget-text" class="form-control" type="text" placeholder="Text"/>
+        <input id="widget-text" class="form-control" type="text" placeholder="Text" value="US Senate Reaches Compromise on Emergency Zika Funding"/>
 
-        <label for="widget-url">URL</label>
-        <input id="widget-url" class="form-control" type="url" placeholder="URL" value="https://www.youtube.com/embed/uLWLashCXHE"/>
-
-        <label for="widget-width">Width</label>
-        <input id="widget-width" class="form-control" type="number" placeholder="Width"/>
+        <label>Size
+            <select name="widget-size">
+                <option>1</option>
+                <option>2</option>
+                <option selected>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+        </label>
+        <!--<input id="widget-size" class="form-control" type="number" placeholder="Size"/>-->
 
         <a class="btn btn-danger btn-block" href="widget-list.view.client.html">
             Delete
@@ -41,7 +47,7 @@
 <nav class="navbar navbar-light navbar-fixed-bottom bg-primary">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a class="nav-text" href="../user/profile.view.client.html">
+            <a class="nav-text" href="../../user/templates/profile.view.client.html">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
