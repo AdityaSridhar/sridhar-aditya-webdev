@@ -40,3 +40,9 @@ img {
     opacity : 0.7;
     z-index : 2;
 }
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}

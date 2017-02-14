@@ -33,16 +33,18 @@
         function createWidget(pageId, widget){
             widget.pageId = pageId;
             widget._id = ((new Date()).getTime()).toString();
-            widgets.push(page);
+            widgets.push(widget);
+            return angular.copy(widget);
         }
 
         function findWidgetsByPageId(pageId){
+            var pageWidgets = [];
             for(var i in widgets){
                 if(widgets[i].pageId === pageId){
-                    return angular.copy(widgets[i]);
+                    pageWidgets.push(widgets[i]);
                 }
             }
-            return null;
+            return pageWidgets;
         }
 
         function findWidgetById(widgetId){
@@ -57,8 +59,23 @@
         function updateWidget(widgetId, widget){
             for(var i in widgets){
                 if(widgets[i]._id === widgetId){
-                    widgets[i].pageId = widget.pageId;
-                    widgets[i].widgetType = widget.widgetType;
+                    switch(widgets[i].widgetType) {
+                        case "YOUTUBE":
+                        case "IMAGE":
+                            widgets[i].width = widget.width;
+                            widgets[i].url = widget.url;
+                            break;
+                        case "HEADER":
+                            widgets[i].size = widget.size;
+                            widgets[i].text = widget.text;
+                            break;
+                        case "HTML":
+                            widgets[i].text = widget.text;
+                            break;
+                        default:
+                            console.log("Reached default case in update widget");
+                    }
+                    break;
                 }
             }
         }

@@ -1,17 +1,18 @@
 <nav class="navbar navbar-fixed-top navbar-light bg-primary">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a class="nav-text" href="../../page/templates/page-list.view.client.html">
+            <a class="nav-text" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a class="nav-text" href="widget-choose.view.client.html">
+            <a class="nav-text" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand nav-text" href="#">
+            <a class="navbar-brand nav-text"
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 Widgets
             </a>
         </div>
@@ -19,98 +20,26 @@
 </nav>
 
 <div class="container-fluid website-list">
-    <div class="container-fluid">
-        <div class="widget-dragger">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-align-justify pull-right"></span>
-            </a>
-            <a class="pull-right"  href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-        </div>
-        <div>
-            <h1 class="pull-left">
-                GIZMODO
-            </h1>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="widget-dragger">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-align-justify pull-right"></span>
-            </a>
-            <a class="pull-right"  href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-        </div>
-        <h3 class="pull-left">
-            US Senate Reaches Compromise on Emergency Zika Funding
-        </h3>
-    </div>
-    <div class="container-fluid">
-        <div class="widget-dragger">
-            <a href="widget-image.view.client.html">
-                <span class="glyphicon glyphicon-align-justify pull-right"></span>
-            </a>
-            <a class="pull-right"  href="widget-image.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-        </div>
-        <img src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/news/2016/01_2016/aedes_albopictus_mosquito/650x350_aedes_albopictus_mosquito.jpg"/>
-    </div>
-    <div class="container-fluid">
-        <div class="widget-dragger">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-align-justify pull-right"></span>
-            </a>
-            <a class="pull-right"  href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-        </div>
-        <h4 class="pull-left">
-            In February, the White House formally asked Congress for $1.8 billion dollars to help combat the Zika virus this summer. Now, the Senate has worked out a bipartisan deal will allocate $1.1 billion in emergency funding.
-        </h4>
-    </div>
-    <div class="container-fluid">
-        <div class="widget-dragger">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-align-justify pull-right"></span>
-            </a>
-            <a class="pull-right"  href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-        </div>
-        <h3 class="pull-left">
-            Man in Wingsuit Flies Straight Through a Ring of Fire
-        </h3>
-    </div>
-    <div class="container-fluid">
-        <div class="widget-dragger">
-            <a href="widget-youtube.view.client.html">
-                <span class="glyphicon glyphicon-align-justify pull-right"></span>
-            </a>
-            <a class="pull-right" href="widget-youtube.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-        </div>
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe src="https://www.youtube.com/embed/uLWLashCXHE" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div class="container-fluid">
-        <div class="widget-dragger">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-align-justify pull-right"></span>
-            </a>
-            <a class="pull-right" href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-        </div>
-        <div>
-            <h4 class="pull-left">
-                Flying in a wingsuit? That’s just not enough anymore. Anyone could do that (I would never do that). You have to make it more extreme, like by hitting a target while you’re cutting through the air at crazy speeds. Or by making that target a small ring that you have to somehow fly through. Or by lighting that ring on fire. Or by... actually, that should be extreme enough for now.
-            </h4>
+    <div ng-repeat="widget in model.widgets">
+        <div ng-switch="widget.widgetType">
+            <div class="widget-dragger">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
+            <div ng-switch-when="HEADER">
+                <ng-include src="'views/widget/templates/widget-heading.view.client.html'">
+            </div>
+            <div ng-switch-when="IMAGE">
+                <ng-include src="'views/widget/templates/widget-image.view.client.html'">
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <ng-include src="'views/widget/templates/widget-youtube.view.client.html'">
+            </div>
+            <div ng-switch-when="HTML">
+                <div ng-bind-html="model.getTrustedHtml(widget.text)"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -128,7 +57,7 @@
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a class="nav-text" href="../../user/templates/profile.view.client.html">
+            <a class="nav-text" href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

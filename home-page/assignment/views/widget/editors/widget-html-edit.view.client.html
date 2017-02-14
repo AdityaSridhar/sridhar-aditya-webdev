@@ -5,37 +5,34 @@
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
+        <div class="navbar-text pull-right">
+            <a class="nav-text" ng-click="model.updateWidget(model.widget)">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
         <div class="navbar-header">
-            <a class="navbar-brand nav-text" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
-                Choose Widget
+            <a class="navbar-brand nav-text"
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}">
+                Widget Edit
             </a>
         </div>
     </div>
 </nav>
 
 <div class="container-fluid">
-    <ul class="list-group website-list">
-        <li class="list-group-item">
-            <a ng-click="model.createHeaderWidget()">
-                Header
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a ng-click="model.createImageWidget()">
-                Image
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a ng-click="model.createYouTubeWidget()">
-                YouTube
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a ng-click="model.createHTMLWidget()">
-                HTML
-            </a>
-        </li>
-    </ul>
+    <div class="website-list">
+        <label for="widget-text">HTML</label>
+        <input ng-model="model.widget.text"
+               id="widget-text"
+               class="form-control"
+               type="text"
+               placeholder="Text"/>
+
+        <a class="btn btn-danger btn-block"
+           ng-click="model.deleteWidget()">
+            Delete
+        </a>
+    </div>
 </div>
 
 <nav class="navbar navbar-light navbar-fixed-bottom bg-primary">
