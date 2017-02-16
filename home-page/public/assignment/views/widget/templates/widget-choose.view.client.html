@@ -15,24 +15,9 @@
 
 <div class="container-fluid">
     <ul class="list-group website-list">
-        <li class="list-group-item">
-            <a ng-click="model.createHeaderWidget()">
-                Header
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a ng-click="model.createImageWidget()">
-                Image
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a ng-click="model.createYouTubeWidget()">
-                YouTube
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a ng-click="model.createHTMLWidget()">
-                HTML
+        <li ng-repeat="wtype in model.widgetTypes" class="list-group-item">
+            <a ng-click="model.createWidget(wtype)">
+                {{wtype}}
             </a>
         </li>
     </ul>

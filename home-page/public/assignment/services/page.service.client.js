@@ -54,7 +54,6 @@
                 if(pages[i]._id === pageId){
                     pages[i].description = page.description;
                     pages[i].name = page.name;
-                    pages[i].websiteId = page.websiteId;
                 }
             }
         }

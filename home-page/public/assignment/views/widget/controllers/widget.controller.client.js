@@ -13,7 +13,7 @@
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
-        vm.doYouTrustUrl = doYouTrustUrl;
+        vm.getTrustedYouTubeUrl = getTrustedYouTubeUrl;
         vm.getTrustedHtml = getTrustedHtml;
 
         function init() {
@@ -22,7 +22,7 @@
 
         init();
 
-        function doYouTrustUrl(url) {
+        function getTrustedYouTubeUrl(url) {
             var baseUrl = "https://www.youtube.com/embed/";
             var urlParts = url.split('/');
             var id = urlParts[urlParts.length - 1];
@@ -40,32 +40,11 @@
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
-        vm.createHeaderWidget = createHeaderWidget;
-        vm.createYouTubeWidget = createYouTubeWidget;
-        vm.createImageWidget = createImageWidget;
-        vm.createHTMLWidget = createHTMLWidget;
+        vm.widgetTypes = WidgetService.getWidgetTypes();
+        vm.createWidget = createWidget;
 
-        function createHeaderWidget() {
-            var newWidget = { "_id": "", "widgetType": "HEADER", "pageId": "", "size": 2, "text": "Text"};
-            newWidget = WidgetService.createWidget(vm.pageId, newWidget);
-            $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ newWidget._id);
-        }
-
-        function createYouTubeWidget() {
-            var newWidget = { "_id": "", "widgetType": "YOUTUBE", "pageId": "", "width": "100%", "url": "URL"};
-            newWidget = WidgetService.createWidget(vm.pageId, newWidget);
-            $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ newWidget._id);
-        }
-
-        function createImageWidget() {
-            var newWidget = { "_id": "", "widgetType": "IMAGE", "pageId": "", "width": "100%", "url": "URL"};
-            newWidget = WidgetService.createWidget(vm.pageId, newWidget);
-            $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ newWidget._id);
-        }
-
-        function createHTMLWidget() {
-            var newWidget = { "_id": "", "widgetType": "HTML", "pageId": "", "text": "<p>Lorem ipsum</p>"};
-            newWidget = WidgetService.createWidget(vm.pageId, newWidget);
+        function createWidget(widgetType) {
+            var newWidget = WidgetService.createTypedWidget(vm.pageId, widgetType);
             $location.url('/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+ newWidget._id);
         }
     }

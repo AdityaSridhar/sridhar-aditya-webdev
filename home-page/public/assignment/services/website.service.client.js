@@ -56,7 +56,6 @@
                 if(websites[i]._id === websiteId){
                     websites[i].description = website.description;
                     websites[i].name = website.name;
-                    websites[i].developerId = website.developerId;
                     return angular.copy(websites[i]);
                 }
             }

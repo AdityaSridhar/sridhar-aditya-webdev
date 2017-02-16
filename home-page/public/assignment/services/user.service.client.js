@@ -10,10 +10,10 @@
     function UserService() {
         var users =
             [
-                {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-                {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-                {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-                {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
+                {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder", email : "alice@cs5610.neu.edu"  },
+                {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley", email : "bob@cs5610.neu.edu"  },
+                {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia", email : "charly@cs5610.neu.edu"  },
+                {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email : "jannunzi@cs5610.neu.edu" }
             ];
 
         var api = {
@@ -66,7 +66,7 @@
                     users[i].firstName = user.firstName;
                     users[i].lastName = user.lastName;
                     users[i].username = user.username;
-                    users[i].password = user.password;
+                    users[i].email = user.email;
                     return angular.copy(users[i]);
                 }
             }
