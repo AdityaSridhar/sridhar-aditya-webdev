@@ -13,18 +13,40 @@
         vm.unregisterUser = unregisterUser;
 
         function init() {
-            vm.user = UserService.findUserById(vm.userId);
+            UserService
+                .findUserById(vm.userId)
+                .then(function (user) {
+                    vm.user = user.data;
+                })
+                .catch(function (error) {
+                    vm.error = "User not found"
+                });
         }
 
         init();
-        
+
         function updateUser(user) {
-            UserService.updateUser(vm.userId, user);
+            UserService
+                .updateUser(vm.userId, user)
+                .then(function (user) {
+                    if (user.data != null) {
+                        vm.message = "User Info successfully updated"
+                    }
+                })
+                .catch(function (error) {
+                    vm.error = "Unable to update User info"
+                });
         }
 
         function unregisterUser() {
-            UserService.deleteUser(vm.userId);
-            $location.url("/login");
+            UserService
+                .deleteUser(vm.userId)
+                .then(function (user) {
+                    $location.url("/login");
+                })
+                .catch(function (error) {
+                    vm.error = "Failed to delete user"
+                });
         }
     }
 })();
