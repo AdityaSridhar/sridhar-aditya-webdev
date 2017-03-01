@@ -30,7 +30,7 @@ img {
     margin-bottom: 20px;
 }
 
-.widget-dragger{
+.widget-handle {
     position : absolute;
     right : 15px;
     background-color : white;

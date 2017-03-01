@@ -7,6 +7,7 @@ module.exports = function (app) {
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
+    app.put("/page/:pageId/widget", updateWidgetPosition);
     app.delete("/api/widget/:widgetId", deleteWidget);
 
     var widgets =
@@ -112,6 +113,27 @@ module.exports = function (app) {
             }
         }
         res.sendStatus(404);
+    }
+
+    function updateWidgetPosition(req, res) {
+        console.log('Hello');
+        var pageId = req.params.pageId;
+        var initial_index = parseInt(req.query.initial);
+        var final_index = parseInt(req.query.final);
+
+        var allWidgetsForPage = widgets.filter(function (w) {
+            return w.pageId == pageId;
+        });
+
+        widgets = widgets.filter(function (w) {
+            return allWidgetsForPage.indexOf(w) < 0;
+        });
+
+        var elem_at_final_pos = allWidgetsForPage[final_index];
+        allWidgetsForPage[final_index] = allWidgetsForPage[initial_index];
+        allWidgetsForPage[initial_index] = elem_at_final_pos;
+        widgets = widgets.concat(allWidgetsForPage);
+        res.sendStatus(200);
     }
 
     function deleteWidget(req, res) {

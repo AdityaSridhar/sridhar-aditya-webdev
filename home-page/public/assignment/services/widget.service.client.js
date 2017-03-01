@@ -18,7 +18,8 @@
             "updateWidget": updateWidget,
             "deleteWidget": deleteWidget,
             "getWidgetTypes": getWidgetTypes,
-            "createTypedWidget": createTypedWidget
+            "createTypedWidget": createTypedWidget,
+            "UpdateWidgetPosition": UpdateWidgetPosition
         };
         return api;
 
@@ -67,6 +68,10 @@
             }
 
             return createWidget(pageId, newWidgetData);
+        }
+
+        function UpdateWidgetPosition(startIndex, finalIndex, pageId) {
+            return $http.put("/page/" + pageId + "/widget?initial=" + startIndex + "&final=" + finalIndex);
         }
     }
 })();
