@@ -3,7 +3,14 @@
  */
 
 module.exports = function (app) {
+
+    var multer = require('multer');
+    var fs = require('fs');
+    var uploadsFolderPath = __dirname + '/../../public/uploads';
+    var upload = multer({dest: uploadsFolderPath});
+
     app.post("/api/page/:pageId/widget", createWidget);
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
@@ -30,7 +37,7 @@ module.exports = function (app) {
             },
             {
                 "_id": "345", "name": "Image Widget", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-                "url": "http://lorempixel.com/1600/900/people/", "text": ""
+                "url": "", "text": ""
             },
             {"_id": "456", "name": "HTML Widget", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
             {
@@ -129,9 +136,10 @@ module.exports = function (app) {
             return allWidgetsForPage.indexOf(w) < 0;
         });
 
-        var elem_at_final_pos = allWidgetsForPage[final_index];
-        allWidgetsForPage[final_index] = allWidgetsForPage[initial_index];
-        allWidgetsForPage[initial_index] = elem_at_final_pos;
+        var elem_at_initial_pos = allWidgetsForPage[initial_index];
+        allWidgetsForPage.splice(initial_index, 1);
+        allWidgetsForPage.splice(final_index, 0, elem_at_initial_pos);
+
         widgets = widgets.concat(allWidgetsForPage);
         res.sendStatus(200);
     }
@@ -148,4 +156,27 @@ module.exports = function (app) {
         res.sendStatus(404);
     }
 
+    function uploadImage(req, res) {
+        var widgetId = req.body.widgetId;
+        var uid = req.body.uid;
+        var wid = req.body.wid;
+        var myFile = req.file;
+
+        imgWidget = widgets.find(function (i) {
+            return i._id == widgetId;
+        });
+
+        // Replace existing image.
+        if (imgWidget.url) {
+            fs.unlink(uploadsFolderPath + "/" + imgWidget["fileName"], function () {
+            });
+        }
+
+        imgWidget.url = req.protocol + '://' + req.get('host') + "/uploads/" + myFile.filename;
+
+        // Store off filename for easy retrieval during unlinking.
+        imgWidget["fileName"] = myFile.filename;
+
+        res.redirect(req.get('referrer') + "#/user/" + uid + "/website/" + wid + "/page/" + imgWidget.pageId + "/widget");
+    }
 };
