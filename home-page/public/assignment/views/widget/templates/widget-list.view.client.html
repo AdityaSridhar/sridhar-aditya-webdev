@@ -6,7 +6,8 @@
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a class="nav-text" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+            <a class="nav-text"
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -20,27 +21,29 @@
 </nav>
 
 <div wbdv-sortable="" class="container-fluid website-list">
-    <div class="wid" ng-repeat="widget in model.widgets">
-        <div ng-switch="widget.widgetType">
-            <div class="widget-handle">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <span class="widget-dragger glyphicon glyphicon-align-justify"></span>
-            </div>
-            <div ng-switch-when="HEADER">
-                <ng-include src="'views/widget/templates/widget-heading.view.client.html'">
-            </div>
-            <div ng-switch-when="IMAGE">
-                <ng-include src="'views/widget/templates/widget-image.view.client.html'">
-            </div>
-            <div ng-switch-when="YOUTUBE">
-                <ng-include src="'views/widget/templates/widget-youtube.view.client.html'">
-            </div>
-            <div ng-switch-when="HTML">
-                <div ng-bind-html="model.getTrustedHtml(widget.text)"></div>
-            </div>
-        </div>
+    <div class="card" ng-repeat="widget in model.widgets">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" ng-switch="widget.widgetType">
+                <div class="widget-handle">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <span class="widget-dragger glyphicon glyphicon-align-justify"></span>
+                </div>
+                <div ng-switch-when="HEADER">
+                    <ng-include src="'views/widget/templates/widget-heading.view.client.html'">
+                </div>
+                <div ng-switch-when="IMAGE">
+                    <ng-include src="'views/widget/templates/widget-image.view.client.html'">
+                </div>
+                <div ng-switch-when="YOUTUBE">
+                    <ng-include src="'views/widget/templates/widget-youtube.view.client.html'">
+                </div>
+                <div ng-switch-when="HTML">
+                    <div ng-bind-html="model.getTrustedHtml(widget.text)"></div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 
