@@ -1,7 +1,4 @@
-home-page/.idea/workspace.xml
-home-page/.idea/home-page.iml
-home-page/.idea/modules.xml
-.idea/modules.xml
-.idea/sridhar-aditya-webdev.iml
-.idea/vcs.xml
-.idea/workspace.xml
+home-page/.idea
+.idea
+home-page/node_modules
+home-page/public/uploads
