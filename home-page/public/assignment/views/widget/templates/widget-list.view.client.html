@@ -23,14 +23,14 @@
 <div wbdv-sortable="" class="container-fluid website-list">
     <div class="card" ng-repeat="widget in model.widgets">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item" ng-switch="widget.widgetType">
+            <li class="list-group-item" ng-switch="widget.type">
                 <div class="widget-handle">
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
                     <span class="widget-dragger glyphicon glyphicon-align-justify"></span>
                 </div>
-                <div ng-switch-when="HEADER">
+                <div ng-switch-when="HEADING">
                     <ng-include src="'views/widget/templates/widget-heading.view.client.html'">
                 </div>
                 <div ng-switch-when="IMAGE">
