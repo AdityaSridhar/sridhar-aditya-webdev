@@ -13,6 +13,8 @@ module.exports = function () {
     };
 
     var mongoose = require("mongoose");
+    var q = require("q");
+    mongoose.Promise = q.Promise;
     var PageSchema = require('./page.schema.server')();
     var PageModel = mongoose.model("PageModel", PageSchema);
     var _model = null;
@@ -32,7 +34,10 @@ module.exports = function () {
                 return _model.websiteModel.findWebsiteById(websiteId)
                     .then(function (website) {
                         website.pages.push(updatedPage._id);
-                        return website.save();
+                        return _model.websiteModel.updateWebsite(websiteId, website)
+                            .then(function (updatedWebsite) {
+                                return updatedPage;
+                            });
                     })
             });
     }
@@ -62,10 +67,30 @@ module.exports = function () {
     }
 
     function deletePage(pageId) {
-        return PageModel.findById(pageId)
+        return PageModel.findOne({_id: pageId})
             .exec()
             .then(function (page) {
-                return page.remove();
+                return deletePageFromWebsite(page._id, page._website)
+                    .then(function (updatedWebsite) {
+                        return PageModel.findByIdAndRemove(pageId)
+                            .exec()
+                            .then(function (deletedPage) {
+                                return deletedPage;
+                            });
+                    })
+            });
+    }
+
+    function deletePageFromWebsite(pageId, pageId) {
+        return _model.pageModel.findPageById(pageId)
+            .then(function (page) {
+                for (var i = 0; i < page.widgets.length; i++) {
+                    if (page.widgets[i].equals(widgetId)) {
+                        page.widgets.splice(i, 1);
+                        break;
+                    }
+                }
+                return _model.pageModel.updatePage(page._id, page);
             });
     }
 };

@@ -32,7 +32,8 @@ module.exports = function () {
                 return _model.userModel.findUserById(userId)
                     .then(function (user) {
                         user.websites.push(updatedWebsite._id);
-                        return user.save();
+                        user.save();
+                        return updatedWebsite;
                     })
             });
     }

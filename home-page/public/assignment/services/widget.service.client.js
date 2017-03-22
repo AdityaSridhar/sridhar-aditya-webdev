@@ -54,7 +54,6 @@
                     newWidgetData = {
                         "name": "YouTube Widget",
                         "type": "YOUTUBE",
-                        "pageId": "",
                         "width": "100%",
                         "url": "URL",
                         "text": "Text"
@@ -64,7 +63,6 @@
                     newWidgetData = {
                         "name": "Image Widget",
                         "type": "IMAGE",
-                        "pageId": "",
                         "width": "100%",
                         "url": "URL",
                         "text": "Text"
@@ -74,13 +72,12 @@
                     newWidgetData = {
                         "name": "Header Widget",
                         "type": "HEADING",
-                        "pageId": "",
                         "size": 2,
                         "text": "Text"
                     };
                     break;
                 case "HTML":
-                    newWidgetData = {"name": "HTML Widget", "type": "HTML", "pageId": "", "text": "<p>Lorem ipsum</p>"};
+                    newWidgetData = {"name": "HTML Widget", "type": "HTML", "text": "<p>Lorem ipsum</p>"};
                     break;
                 default:
                     console.log("Unknown Widget Type passed to createTypedWidget");

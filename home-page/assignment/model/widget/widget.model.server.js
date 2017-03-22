@@ -34,7 +34,8 @@ module.exports = function () {
                 return _model.pageModel.findPageById(pageId)
                     .then(function (page) {
                         page.widgets.push(updatedWidget._id);
-                        return page.save();
+                        page.save();
+                        return updatedWidget;
                     })
             });
     }
