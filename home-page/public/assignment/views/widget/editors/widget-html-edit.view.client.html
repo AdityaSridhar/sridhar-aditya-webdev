@@ -21,24 +21,25 @@
 
 <div class="container-fluid">
     <div class="website-list">
-        <label for="widget-name">Name</label>
-        <input ng-model="model.widget.name"
-               id="widget-name"
-               class="form-control"
-               type="text"
-               placeholder="Name"/>
 
-        <label for="widget-text">HTML</label>
-        <input ng-model="model.widget.text"
-               id="widget-text"
-               class="form-control"
-               type="text"
-               placeholder="Text"/>
+        <div text-angular
+             ng-model="model.widget.text"
+             ta-toolbar-class="btn-toolbar"
+             ta-toolbar-group-class="btn-group"
+             ta-toolbar-button-class="btn btn-default"
+             ta-toolbar-active-button-class="active"></div>
 
-        <a class="btn btn-danger btn-block"
-           ng-click="model.deleteWidget()">
-            Delete
-        </a>
+        <p>
+
+
+        </p>
+
+        <div>
+            <a class="btn btn-danger btn-block"
+               ng-click="model.deleteWidget()">
+                Delete
+            </a>
+        </div>
     </div>
 </div>
 
