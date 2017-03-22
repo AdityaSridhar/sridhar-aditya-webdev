@@ -13,8 +13,6 @@ module.exports = function () {
     };
 
     var mongoose = require("mongoose");
-    var q = require("q");
-    mongoose.Promise = q.Promise;
     var PageSchema = require('./page.schema.server')();
     var PageModel = mongoose.model("PageModel", PageSchema);
     var _model = null;

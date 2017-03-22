@@ -15,8 +15,6 @@ module.exports = function () {
     };
 
     var mongoose = require("mongoose");
-    var q = require("q");
-    mongoose.Promise = q.Promise;
     var WidgetSchema = require('./widget.schema.server')();
     var WidgetModel = mongoose.model("WidgetModel", WidgetSchema);
     var _model = null;

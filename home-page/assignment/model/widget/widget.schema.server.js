@@ -20,15 +20,11 @@ module.exports = function () {
         icon: String,
         deletable: Boolean,
         formatted: Boolean,
-        dateCreated: {type: Date, required: true, default: Date.now}
-    }, {collection: "webappmaker.widgets"});
+        dateCreated: {type: Date, default: Date.now}
+    }, {collection: "Web_App_Maker.Widget"});
 
     WidgetSchema.pre('remove', function (next) {
-        this.model('PageModel').update(
-            {_id: this._page},
-            {$pull: {widgets: this._id}},
-            next
-        );
+        this.model('PageModel').update({_id: this._page}, {$pull: {widgets: this._id}}, next);
     });
     return WidgetSchema;
 };

@@ -12,19 +12,17 @@ module.exports = function () {
         description: String,
         pages: [{type: mongoose.Schema.Types.ObjectId, ref: "PageModel"}],
         dateCreated: {type: Date, default: Date.now}
-    }, {collection: "webappmaker.website"});
+    }, {collection: "Web_App_Maker.Website"});
 
     WebsiteSchema.pre('remove', function (next) {
-
-        this.model('PageModel').find({_id: {$in: this.pages}}).remove()
-            .then(function (docs) {
-                console.log(docs);
+        var website = this;
+        this.model('PageModel').find({_id: {$in: this.pages}}).remove().exec()
+            .then(function (pages) {
+                return website.model('WidgetModel').find({_page: {$in: website.pages}}).remove().exec();
+            })
+            .then(function (widgets) {
+                return website.model('UserModel').update({_id: website._user}, {$pull: {websites: website._id}}, next);
             });
-        this.model('UserModel').update(
-            {_id: this._user},
-            {$pull: {websites: this._id}},
-            next
-        );
     });
 
     return WebsiteSchema;

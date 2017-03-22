@@ -14,7 +14,6 @@ module.exports = function () {
         widgetModel: WidgetModel
     };
 
-    UserModel.setDependencies(model);
     WebsiteModel.setDependencies(model);
     PageModel.setDependencies(model);
     WidgetModel.setDependencies(model);

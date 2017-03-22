@@ -10,15 +10,15 @@ module.exports = function () {
         title: String,
         description: String,
         widgets: [{type: mongoose.Schema.Types.ObjectId, ref: 'WidgetModel'}],
-        dateCreated: {type: Date, default: Date.now()}
-    }, {collection: "webappmaker.pages"});
+        dateCreated: {type: Date, default: Date.now}
+    }, {collection: "Web_App_Maker.Page"});
 
     PageSchema.pre('remove', function (next) {
-        this.model('WebsiteModel').update(
-            {_id: this._website},
-            {$pull: {pages: this._id}},
-            next
-        );
+        var page = this;
+        page.model('WidgetModel').find({_page: {$in: page.widgets}}).remove().exec()
+            .then(function () {
+                return page.model('WebsiteModel').update({_id: page._website}, {$pull: {pages: page._id}}, next);
+            });
     });
 
     return PageSchema;
