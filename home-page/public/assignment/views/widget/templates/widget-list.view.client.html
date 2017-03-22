@@ -42,6 +42,9 @@
                 <div ng-switch-when="HTML">
                     <div ng-bind-html="model.getTrustedHtml(widget.text)"></div>
                 </div>
+                <div ng-switch-when="TEXT">
+                    <ng-include src="'views/widget/templates/widget-text.view.client.html'">
+                </div>
             </li>
         </ul>
     </div>

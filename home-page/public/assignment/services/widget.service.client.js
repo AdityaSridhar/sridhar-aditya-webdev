@@ -9,7 +9,7 @@
 
     function WidgetService($http) {
 
-        var widgetTypes = ["HEADING", "IMAGE", "YOUTUBE", "HTML"];
+        var widgetTypes = ["HEADING", "IMAGE", "YOUTUBE", "HTML", "TEXT"];
 
         var api = {
             "createWidget": createWidget,
@@ -78,6 +78,9 @@
                     break;
                 case "HTML":
                     newWidgetData = {"name": "HTML Widget", "type": "HTML", "text": "<p>Lorem ipsum</p>"};
+                    break;
+                case "TEXT":
+                    newWidgetData = {"name": "Text Widget", "type": "TEXT", "text": ""};
                     break;
                 default:
                     console.log("Unknown Widget Type passed to createTypedWidget");
