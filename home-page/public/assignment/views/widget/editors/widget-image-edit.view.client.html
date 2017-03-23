@@ -35,6 +35,8 @@
                type="text"
                placeholder="Text"/>
 
+        <br>
+
         <form action="/api/upload" method="post" enctype="multipart/form-data">
             <input name="myFile" type="file" class="form-control"/>
             <input name="uid" value="{{model.userId}}" style="display: none"/>
@@ -42,6 +44,15 @@
             <input name="widgetId" value="{{model.widget._id}}" style="display: none"/>
             <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
         </form>
+
+        <br>
+
+        <a class="btn btn-primary btn-block"
+           href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr">
+            Search Flickr
+        </a>
+
+        <br>
 
         <a class="btn btn-danger btn-block" ng-click="model.deleteWidget()">
             Delete
