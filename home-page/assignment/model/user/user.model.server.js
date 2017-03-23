@@ -14,10 +14,6 @@ module.exports = function () {
     };
 
     var mongoose = require('mongoose');
-    var q = require('q');
-    mongoose.Promise = q.Promise;
-    mongoose.connect("mongodb://127.0.0.1:27017/Web_App_Maker");
-
     var UserSchema = require('./user.schema.server')();
     var UserModel = mongoose.model('UserModel', UserSchema);
 
