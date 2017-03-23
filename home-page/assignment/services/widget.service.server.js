@@ -156,21 +156,26 @@ module.exports = function (app, model) {
         var wid = req.body.wid;
         var myFile = req.file;
 
-        imgWidget = widgets.find(function (i) {
-            return i._id == widgetId;
-        });
+        model.findWidgetById(widgetId)
+            .then(function (imgWidget) {
+                // Replace existing image.
+                if (imgWidget.url) {
+                    fs.unlink(uploadsFolderPath + "/" + imgWidget.icon, function () {
+                    });
+                }
 
-        // Replace existing image.
-        if (imgWidget.url) {
-            fs.unlink(uploadsFolderPath + "/" + imgWidget["fileName"], function () {
+                imgWidget.url = req.protocol + '://' + req.get('host') + "/uploads/" + myFile.filename;
+
+                // Store off filename for easy retrieval during unlinking.
+                imgWidget.icon = myFile.filename;
+
+                model.updateWidget(widgetId, imgWidget)
+                    .then(function (updatedWidget) {
+                        res.redirect(req.get('referrer') + "#/user/" + uid + "/website/" + wid + "/page/" + updatedWidget._page + "/widget");
+                    })
+            })
+            .catch(function (error) {
+                res.sendStatus(500).send(error);
             });
-        }
-
-        imgWidget.url = req.protocol + '://' + req.get('host') + "/uploads/" + myFile.filename;
-
-        // Store off filename for easy retrieval during unlinking.
-        imgWidget["fileName"] = myFile.filename;
-
-        res.redirect(req.get('referrer') + "#/user/" + uid + "/website/" + wid + "/page/" + imgWidget.pageId + "/widget");
     }
 };

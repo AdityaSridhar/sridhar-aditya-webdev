@@ -35,6 +35,9 @@
                type="text"
                placeholder="Text"/>
 
+        <label for="widget-url">URL</label>
+        <input ng-model="model.widget.url" id="widget-url" class="form-control" type="url" placeholder="URL"/>
+
         <br>
 
         <form action="/api/upload" method="post" enctype="multipart/form-data">
