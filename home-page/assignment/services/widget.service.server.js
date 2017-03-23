@@ -123,20 +123,13 @@ module.exports = function (app, model) {
         var initial_index = parseInt(req.query.initial);
         var final_index = parseInt(req.query.final);
 
-        var allWidgetsForPage = widgets.filter(function (w) {
-            return w.pageId == pageId;
-        });
-
-        widgets = widgets.filter(function (w) {
-            return allWidgetsForPage.indexOf(w) < 0;
-        });
-
-        var elem_at_initial_pos = allWidgetsForPage[initial_index];
-        allWidgetsForPage.splice(initial_index, 1);
-        allWidgetsForPage.splice(final_index, 0, elem_at_initial_pos);
-
-        widgets = widgets.concat(allWidgetsForPage);
-        res.sendStatus(200);
+        model.reorderWidget(pageId, initial_index, final_index)
+            .then(function () {
+                res.sendStatus(200);
+            })
+            .catch(function (error) {
+                res.sendStatus(500).send(error);
+            });
     }
 
     function deleteWidget(req, res) {
