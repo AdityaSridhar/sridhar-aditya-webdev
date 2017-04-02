@@ -6,19 +6,26 @@
         .module("WebAppMaker")
         .controller("LoginController", LoginController);
 
-    function LoginController($location, UserService) {
+    function LoginController($location, UserService, $rootScope) {
         var vm = this;
         vm.login = login;
+        vm.dismissAlert = dismissAlert;
 
         function login(user) {
             UserService
-                .findUserByCredentials(user.username, user.password)
-                .then(function (user) {
-                    $location.url("/user/" + user.data._id);
+                .login(user)
+                .then(function (response) {
+                    var user = response.data;
+                    $rootScope.currentUser = user;
+                    $location.url("/user/" + user._id);
                 })
                 .catch(function (error) {
                     vm.error = "Unable to login";
                 })
+        }
+
+        function dismissAlert() {
+            vm.error = "";
         }
     }
 })();

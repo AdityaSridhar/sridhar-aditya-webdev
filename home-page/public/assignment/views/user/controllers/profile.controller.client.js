@@ -6,11 +6,12 @@
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams, UserService, $location) {
+    function ProfileController($routeParams, UserService, $location, $rootScope) {
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.updateUser = updateUser;
         vm.unregisterUser = unregisterUser;
+        vm.logout = logout;
 
         function init() {
             UserService
@@ -29,7 +30,7 @@
             UserService
                 .updateUser(vm.userId, user)
                 .then(function (user) {
-                    if (user.data != null) {
+                    if (user.data) {
                         vm.message = "User Info successfully updated"
                     }
                 })
@@ -47,6 +48,14 @@
                 .catch(function (error) {
                     vm.error = "Failed to delete user"
                 });
+        }
+
+        function logout() {
+            UserService.logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/");
+                })
         }
     }
 })();

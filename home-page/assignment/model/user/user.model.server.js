@@ -10,7 +10,8 @@ module.exports = function () {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findUserByFacebookId: findUserByFacebookId
     };
 
     var mongoose = require('mongoose');
@@ -60,6 +61,14 @@ module.exports = function () {
             .exec()
             .then(function (user) {
                 return user.remove();
+            });
+    }
+
+    function findUserByFacebookId(facebookId) {
+        return UserModel.findOne({'facebook.id': facebookId})
+            .exec()
+            .then(function (user) {
+                return user;
             });
     }
 };
