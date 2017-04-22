@@ -5,80 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta name="HandheldFriendly" content="true">
     <title>Web Dev Course Home Page</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link rel="stylesheet" href="assignment/css/home-page-style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
-<body>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#myPage">HOME</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#me">ABOUT</a></li>
+                <li><a href="#portfolio">PORTFOLIO</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div>
     <div class="jumbotron text-center">
-        <h1 class="text-center">CS 5610</h1>
-        <p>Web Development Coursework</p>
-        <p>Aditya Sridhar</p>
+        <h1>CS 5610 : Web Development</h1>
     </div>
 
-    <div class="container-fluid text-center bg-content">
-        <div class="card-deck text-center blocks">
-            <div class="col-sm-4">
-                <div class="card block">
-                    <h3 class="card-header">Web App Maker</h3>
-                    <div class="card-block">
-                        <i class="fa fa-sign-in logo"></i>
+    <div id="me" class="container-fluid bg-1 text-center">
+        <img src="https://www.linkedin.com/mpr/mpr/p/5/005/089/078/31c1c68.jpg"
+             class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+        <h3>Aditya Sridhar</h3>
+        <h4>Graduate Student at Northeastern University</h4>
+    </div>
+
+    <div id="portfolio" class="bg-3 container-fluid">
+        <div class="text-center">
+            <h1>Portfolio</h1>
+            <br>
+        </div>
+        <div class="row slideanim">
+            <div class="col-sm-4 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h1>
+                            <a class="panel-a" href="assignment/index.html" target="_blank">
+                                Web App Maker
+                            </a>
+                        </h1>
                     </div>
-                    <div class="card-footer text-muted">
+                    <div class="panel-body">
                         <a href="assignment/index.html" target="_blank">
-                            Assignment 5 - Database Development
+                            <i class="fa fa-5x fa-sign-in logo"></i>
                         </a>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card block">
-                    <h3 class="card-header">Course Project</h3>
-                    <div class="card-block">
-                        <i class="fa fa-graduation-cap logo"></i>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Coming Soon!
+                    <div class="panel-footer">
+                        <p>A MEAN stack based website that allows users to create and use online, mobile friendly,
+                            websites on the lines of WordPress, Blogger</p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="card block">
-                    <h3 class="card-header">Code</h3>
-                    <div class="card-block">
-                        <i class="fa fa-github logo"></i>
+            <div class="col-sm-4 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h1>
+                            <a class="panel-a" href="http://35.164.124.43:5000/" target="_blank">
+                                Congress Tracker
+                            </a>
+                        </h1>
                     </div>
-                    <div class="card-footer text-muted">
+                    <div class="panel-body">
+                        <a href="http://35.164.124.43:5000/" target="_blank">
+                            <i class="fa fa-5x fa-institution logo"></i>
+                        </a>
+                    </div>
+                    <div class="panel-footer">
+                        <p>A portal that enables citizens to know more about their elected representatives and the
+                            legislature in Congress.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h1>
+                            <a class="panel-a" href="https://github.com/AdityaSridhar/sridhar-aditya-webdev"
+                               target="_blank">
+                                Code
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="panel-body">
                         <a href="https://github.com/AdityaSridhar/sridhar-aditya-webdev" target="_blank">
-                            Github Public Repository
+                            <i class="fa fa-5x fa-code logo"></i>
                         </a>
+                    </div>
+                    <div class="panel-footer">
+                        <p>Github Public Repository</p>
+                        <br>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <nav class="navbar navbar-light navbar-fixed-bottom bg-primary footer">
-        <div class="container-fluid">
-            <div class="navbar-text pull-left">
-                <a class="footer-text" href="https://www.linkedin.com/in/aditya-sridhar7/" target="_blank">
-                    <i class="fa fa-linkedin"></i>
-                </a>
-            </div>
-            <div class="navbar-text pull-right">
-                <a class="footer-text" href="https://about.me/aditya.sridhar" target="_blank">
-                    <i class="fa fa-user-o"></i>
-                </a>
+    <footer class="text-center">
+        <div>
+            <div class="container">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div class="row">
+                    <div>
+                        <h3 id="contact">Connect</h3>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a class="btn-social btn-outline" target="_blank"
+                                   href="https://twitter.com/aditya_sridhar"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-social btn-outline" target="_blank"
+                                   href="https://www.linkedin.com/in/aditya-sridhar7/"><i
+                                        class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-social btn-outline" target="_blank"
+                                   href="https://about.me/aditya.sridhar"><i class="fa fa-fw fa-user"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    </footer>
+
+
 </div>
 </body>
 </html>
